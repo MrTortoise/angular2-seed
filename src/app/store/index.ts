@@ -1,23 +1,15 @@
 import {combineReducers} from 'redux';
 import {IAction, CountActions} from '../actions';
+import {IAuthState, AuthDefaultState, authReducer} from './auth.store';
 
 export interface IAppState {
-  count: number;
+  auth: IAuthState;
 }
 
 export const DefaultAppState: IAppState = {
-  count: 0
+  auth: AuthDefaultState
 }
 
 export const rootReducer = combineReducers<IAppState>({
-  count: function(state: number = DefaultAppState.count, action: IAction) {
-    switch (action.type) {
-      case CountActions.INCREMENT:
-        return state + 1;
-      case CountActions.DECREMENT:
-        return state - 1;
-      default:
-        return state;
-    }
-  }
+  auth: authReducer
 });
