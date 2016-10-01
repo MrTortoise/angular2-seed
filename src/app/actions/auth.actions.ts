@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {NgRedux} from 'ng2-redux';
 import {IAppState} from '../store';
-import {IAction} from './index';
+import {IAction, IAsyncAction, IAsyncActionCompletion} from './index';
 
 @Injectable()
 export class AuthActions {
@@ -10,7 +10,9 @@ export class AuthActions {
     
   }
 
-  static LOGIN_WITH_PASSWORD: string = "LOGIN_WITH_PASSWORD";
+  static LOGIN_WITH_PASSWORD: string = "AUTH.LOGIN_WITH_PASSWORD";
+  static BEGIN_LOGIN_WITH_PASSWORD: string = "AUTH.BEGIN_LOGIN_WITH_PASSWORD";
+  static COMPLETE_LOGIN_WITH_PASSWORD: string = "AUTH.COMPLETE_LOGIN_WITH_PASSWORD";
 
   loginWithPassword(email: string, password: string): void {
     let action: ILoginWithPasswordAction = {
@@ -24,6 +26,29 @@ export class AuthActions {
     this.ngRedux.dispatch(action);
   }
 
+  beginLoginWithPassword(correlationId: string) {
+    let action: IBeginLoginWithPasswordAction = {
+      type: AuthActions.BEGIN_LOGIN_WITH_PASSWORD,
+      correlationId: correlationId
+    };
+
+    this.ngRedux.dispatch(action);
+  }
+
+  completeLoginWithPassword(
+    correlationId: string, 
+    error?: string, 
+    uuid?: string, 
+    token?: string) {
+      
+    let action: ICompleteLoginWithPasswordAction = {
+      type: AuthActions.COMPLETE_LOGIN_WITH_PASSWORD,
+      correlationId: correlationId,
+      error: error
+    };
+
+    this.ngRedux.dispatch(action);
+  }
 
 }
 
@@ -31,5 +56,16 @@ export interface ILoginWithPasswordAction extends IAction {
   payload: {
     email: string,
     password: string
+  }
+}
+
+export interface IBeginLoginWithPasswordAction extends IAsyncAction {
+  
+}
+
+export interface ICompleteLoginWithPasswordAction extends IAsyncActionCompletion {
+  payload?: {
+    uuid: string,
+    token: string
   }
 }

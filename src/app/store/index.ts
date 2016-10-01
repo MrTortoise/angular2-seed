@@ -2,6 +2,8 @@ import {combineReducers} from 'redux';
 import {IAction, CountActions} from '../actions';
 import {IAuthState, AuthDefaultState, authReducer} from './auth.store';
 
+export * from './auth.store';
+
 export interface IAppState {
   auth: IAuthState;
 }

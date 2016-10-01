@@ -1,10 +1,11 @@
 import {Routes} from '@angular/router';
-import {Home, About} from './components';
+import {Home, About, Auth} from './components';
 
 export const rootRouterConfig: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: Home},
-  {path: 'about', component: About}
+  {path: 'about', component: About},
+  {path: 'auth', component: Auth}
   /*
   {path: 'github', component: RepoBrowser,
     children: [
