@@ -44,7 +44,11 @@ export class AuthActions {
     let action: ICompleteLoginWithPasswordAction = {
       type: AuthActions.COMPLETE_LOGIN_WITH_PASSWORD,
       correlationId: correlationId,
-      error: error
+      error: error,
+      payload: {
+        uuid: uuid,
+        token: token
+      }
     };
 
     this.ngRedux.dispatch(action);

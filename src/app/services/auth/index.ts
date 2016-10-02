@@ -6,7 +6,9 @@ export * from './mock-auth.service';
 export const AuthService = new OpaqueToken("auth.service");
 
 export interface IAuthService {
-  isLoggedIn(): Observable<boolean>;
-  userEmail(): Observable<string>;
+  isLoggedIn: Observable<boolean>;
+  isAuthenticating: Observable<boolean>;
+  userEmail: Observable<string>;
+  
   authenticateWithEmail(email: string, password: string): Observable<void>;
 }

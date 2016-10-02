@@ -20,13 +20,9 @@ export class MockAuthService implements IAuthService {
     private _actions: AuthActions) {
   }
 
-  isLoggedIn() {
-    return this.state$.map(s => s.isLoggingIn);
-  }
-
-  userEmail() {
-    return this.state$.map(s => s.email);
-  }
+  isLoggedIn = this.state$.map(s => s.isAuthenticated);
+  isAuthenticating = this.state$.map(s => s.isAuthenticating);
+  userEmail = this.state$.map(s => s.email);
 
   authenticateWithEmail(email: string, password: string): Observable<void> {
     let subject = new Subject<void>();
@@ -34,7 +30,7 @@ export class MockAuthService implements IAuthService {
     this._actions.beginLoginWithPassword(correlationId);
 
     Random.timeout(() => {
-      if (email == email && MockAuthService.EMAIL == MockAuthService.PASSWORD) {
+      if (email == MockAuthService.EMAIL && password == MockAuthService.PASSWORD) {
         MockAuthService.TOKEN = Random.id();
         this._actions.completeLoginWithPassword(
           correlationId, 

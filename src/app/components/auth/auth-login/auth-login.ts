@@ -8,7 +8,7 @@ import {FormField} from '../../../utils/';
 })
 export class AuthLogin {
   @Output() onSubmit = new EventEmitter<LoginFormModel>();
-  @Input() errors: string[];
+  @Input() errors: [string, string][];
   
   model = new LoginFormModel();
 
