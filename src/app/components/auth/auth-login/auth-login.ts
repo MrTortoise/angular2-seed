@@ -15,12 +15,18 @@ export class AuthLogin {
 
   submit() {
     this.onStateChange.emit(this.model);
+    this.reset();
+  }
+
+  reset() {
+    this.model = new LoginFormModel();
   }
 
 }
 
 export class LoginFormModel {
-    email = new FormField("");
-    password = new FormField("");
-    keepSignedIn = new FormField(false);
+  constructor(
+    public email = "",
+    public password = "",
+    public keepSignedIn = "") {}
 }
