@@ -1,1 +1,9 @@
 <p>Worked</p>
+<div>
+  <form ng-submit="submit()">
+    <input type="text" id="auth-login-email" [(ngModel)]="model.email" name="email">
+  </form>
+  <div [hidden]="auth-login-email.valid || auth-login-email.pristine" class="alert alert-danger">
+    Name is required.
+  </div>
+</div>
