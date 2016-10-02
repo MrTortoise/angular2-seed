@@ -7,14 +7,13 @@ import {FormField} from '../../../utils/';
   templateUrl: './auth-login.html'
 })
 export class AuthLogin {
-  @Output() onSubmit = new EventEmitter<void>();
-  @Output() onStateChange = new EventEmitter<LoginFormModel>();
+  @Output() onSubmit = new EventEmitter<LoginFormModel>();
   @Input() errors: string[];
   
   model = new LoginFormModel();
 
   submit() {
-    this.onStateChange.emit(this.model);
+    this.onSubmit.emit(this.model);
     this.reset();
   }
 
@@ -28,5 +27,5 @@ export class LoginFormModel {
   constructor(
     public email = "",
     public password = "",
-    public keepSignedIn = "") {}
+    public keepSignedIn = false) {}
 }

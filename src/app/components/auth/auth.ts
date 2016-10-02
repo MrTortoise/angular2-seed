@@ -1,12 +1,18 @@
-import {Component, Input} from '@angular/core';
-import {IAuthService} from '../../services/auth';
-import {AuthLogin} from './auth-login/auth-login';
+import {Component, Input, Inject} from '@angular/core';
+import {AuthService, IAuthService} from '../../services/auth';
+import {LoginFormModel} from './auth-login/auth-login'
 
 @Component({
   selector: 'auth',
   templateUrl: './auth.html'
 })
 export class Auth {
-  constructor() {}
+  constructor(
+    @Inject(AuthService) private authService: IAuthService) {}
+
+  onLoginSubmit(model: LoginFormModel) {
+    this.authService
+      .authenticateWithEmail(model.email, model.password);
+  }
 
 }
