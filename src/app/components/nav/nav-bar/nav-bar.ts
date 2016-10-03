@@ -1,9 +1,16 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Inject} from '@angular/core';
+import {AuthService, IAuthService} from '../../../services/auth';
 
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.html'
 })
 export class NavBar {
-  @Input() title: string;
+  constructor(
+    @Inject(AuthService) private _authService: IAuthService) {
+
+  }
+
+  isLoggedIn = this._authService.isLoggedIn;
+
 }

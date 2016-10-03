@@ -1,6 +1,6 @@
 import {IAction} from '../actions'
 import {AuthActions, ICompleteLoginWithPasswordAction} from '../actions'
-import {State} from '../utils';
+import * as State from '../utils/state.utils';
 
 export interface IAuthState {
   isAuthenticated: boolean;

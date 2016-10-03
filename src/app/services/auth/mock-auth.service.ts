@@ -4,8 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {select} from 'ng2-redux';
 import {IAuthState} from '../../store';
-import {Random} from '../../utils';
 import {AuthActions} from '../../actions';
+
+import * as Random from '../../utils/random.utils';
 
 @Injectable()
 export class MockAuthService implements IAuthService {
