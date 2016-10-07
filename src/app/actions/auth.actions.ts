@@ -13,6 +13,7 @@ export class AuthActions {
   static LOGIN_WITH_PASSWORD: string = "AUTH.LOGIN_WITH_PASSWORD";
   static BEGIN_LOGIN_WITH_PASSWORD: string = "AUTH.BEGIN_LOGIN_WITH_PASSWORD";
   static COMPLETE_LOGIN_WITH_PASSWORD: string = "AUTH.COMPLETE_LOGIN_WITH_PASSWORD";
+  static LOGOUT = "AUTH.LOGOUT";
 
   loginWithPassword(email: string, password: string): void {
     let action: ILoginWithPasswordAction = {
@@ -54,6 +55,14 @@ export class AuthActions {
     this.ngRedux.dispatch(action);
   }
 
+  logout() {
+    let action: ILogoutAction = {
+      type: AuthActions.LOGOUT
+    };
+
+    this.ngRedux.dispatch(action);
+  }
+
 }
 
 export interface ILoginWithPasswordAction extends IAction {
@@ -72,4 +81,8 @@ export interface ICompleteLoginWithPasswordAction extends IAsyncActionCompletion
     uuid: string,
     token: string
   }
+}
+
+export interface ILogoutAction extends IAction {
+
 }

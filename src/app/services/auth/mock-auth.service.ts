@@ -54,4 +54,19 @@ export class MockAuthService implements IAuthService {
 
     return subject;
   }
+
+  logout(): Observable<void> {
+    let subject = new Subject<void>();
+
+    this.isLoggedIn.subscribe(loggedIn => {  
+      Random.timeout(() => {
+        if (loggedIn) {
+          this._actions.logout();
+        }
+        subject.complete();
+      });
+    })
+
+    return subject;
+  }
 }

@@ -9,8 +9,8 @@
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li>
-      <a [routerLink]="['/auth']" *ngIf="!(isLoggedIn | async)">Sign In</a>
-      <a [routerLink]="['/signout']" *ngIf="(isLoggedIn | async)">Sign Out</a>
+      <a [routerLink]="['/auth/login']" *ngIf="!(isLoggedIn | async)">Sign In</a>
+      <a [routerLink]="['/auth/logout']" *ngIf="(isLoggedIn | async)">Sign Out</a>
     </li>
   </ul>
 </div>

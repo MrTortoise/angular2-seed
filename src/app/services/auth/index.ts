@@ -12,4 +12,5 @@ export interface IAuthService {
   userEmail: Observable<string>;
   
   authenticateWithEmail(email: string, password: string): Observable<void>;
+  logout(): Observable<void>;
 }

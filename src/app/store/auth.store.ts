@@ -22,6 +22,7 @@ export function authReducer(state: IAuthState = AuthDefaultState, action: IActio
   switch(action.type) {
     case AuthActions.BEGIN_LOGIN_WITH_PASSWORD:
       return State.copy(state, { isAuthenticating: true });
+
     case AuthActions.COMPLETE_LOGIN_WITH_PASSWORD:
       let result = <ICompleteLoginWithPasswordAction> action;
       if (!result.error) {
@@ -35,6 +36,10 @@ export function authReducer(state: IAuthState = AuthDefaultState, action: IActio
       else {
         return State.copy(state, AuthDefaultState);
       }
+
+    case AuthActions.LOGOUT:
+      return AuthDefaultState;
+    
     default:
       return state;
   }
