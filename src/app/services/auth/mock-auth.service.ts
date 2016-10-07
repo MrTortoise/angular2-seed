@@ -2,6 +2,7 @@ import {IAuthService} from './index';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {select} from 'ng2-redux';
 import {IAuthState} from '../../store';
 import {AuthActions} from '../../actions';
@@ -19,11 +20,16 @@ export class MockAuthService implements IAuthService {
 
   constructor(
     private _actions: AuthActions) {
+    
+    this._loggedInValue = new BehaviorSubject<boolean>(false);
+    this.isLoggedIn.subscribe(v => this._loggedInValue.next(v));
   }
 
   isLoggedIn = this.state$.map(s => s.isAuthenticated);
   isAuthenticating = this.state$.map(s => s.isAuthenticating);
   userEmail = this.state$.map(s => s.email);
+
+  private _loggedInValue: BehaviorSubject<boolean>;
 
   authenticateWithEmail(email: string, password: string): Observable<void> {
     let subject = new Subject<void>();
@@ -57,15 +63,13 @@ export class MockAuthService implements IAuthService {
 
   logout(): Observable<void> {
     let subject = new Subject<void>();
-
-    this.isLoggedIn.subscribe(loggedIn => {  
-      Random.timeout(() => {
-        if (loggedIn) {
-          this._actions.logout();
-        }
-        subject.complete();
-      });
-    })
+    
+    Random.timeout(() => {
+      if (this._loggedInValue.value) {
+        this._actions.logout();
+      }
+      subject.complete();
+    });
 
     return subject;
   }
