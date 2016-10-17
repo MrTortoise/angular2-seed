@@ -18,14 +18,6 @@ export class AuthLogin {
   isLoggedIn = this.authService.isLoggedIn;
   loginErrors: string[] = [];
 
-  ngOnInit() {
-    /*this.authService.isLoggedIn.subscribe(loggedIn => {
-      if (loggedIn) {
-        //this.router.navigate(["home"]);
-      }
-    });*/
-  }
-
   onLoginSubmit(model: LoginFormModel) {
     this.loginErrors = [];
     this.authService

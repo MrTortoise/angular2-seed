@@ -6,9 +6,7 @@ import {IAction, IAsyncAction, IAsyncActionCompletion} from './index';
 @Injectable()
 export class AuthActions {
   constructor(
-    private ngRedux: NgRedux<IAppState>) {
-    
-  }
+    private ngRedux: NgRedux<IAppState>) {}
 
   static LOGIN_WITH_PASSWORD: string = "AUTH.LOGIN_WITH_PASSWORD";
   static BEGIN_LOGIN_WITH_PASSWORD: string = "AUTH.BEGIN_LOGIN_WITH_PASSWORD";

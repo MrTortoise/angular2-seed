@@ -20,6 +20,7 @@ export const AuthDefaultState: IAuthState = {
 
 export function authReducer(state: IAuthState = AuthDefaultState, action: IAction): IAuthState {
   switch(action.type) {
+    
     case AuthActions.BEGIN_LOGIN_WITH_PASSWORD:
       return State.copy(state, { isAuthenticating: true });
 
