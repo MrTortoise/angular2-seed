@@ -6,6 +6,7 @@ import '@angular/platform-browser';
 import '@angular/core';
 import '@angular/http';
 import '@angular/router';
+import 'auth0-lock';
 
 
 // RxJS 5
@@ -22,3 +23,4 @@ import '@angular/router';
 
 // jQuery
 //require('jquery');
+require('auth0-lock');

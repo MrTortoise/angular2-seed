@@ -5,6 +5,7 @@ export const AuthService = new OpaqueToken("auth.service");
 
 export * from './mock-auth.service';
 export * from './auth-guard.service';
+export * from './auth0-auth.service';
 
 export interface IAuthService {
   isLoggedIn: Observable<boolean>;

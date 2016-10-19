@@ -1,7 +1,7 @@
 import {Component, Input, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {AuthService, IAuthService} from '../../../services/auth';
+import {AuthService, IAuthService, Auth0AuthService} from '../../../services/auth';
 import {LoginFormModel} from './auth-login-form/auth-login-form'
 
 @Component({
@@ -12,6 +12,7 @@ export class AuthLogin {
 
   constructor(
     @Inject(AuthService) private authService: IAuthService,
+    private auth: Auth0AuthService,
     private router: Router) {}
 
   isAuthenticating = this.authService.isAuthenticating;
@@ -31,6 +32,10 @@ export class AuthLogin {
           this.router.navigate(["home"]);
         }
       });
+  }
+
+  clicked() {
+    this.auth.login();
   }
 
 }

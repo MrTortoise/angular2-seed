@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {IAction, CountActions} from '../actions';
+import {IAction} from '../actions';
 import {IAuthState, AuthDefaultState, authReducer} from './auth.store';
 
 export * from './auth.store';

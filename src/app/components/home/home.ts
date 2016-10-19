@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Auth0AuthService} from '../../services/auth';
 
 @Component({
   selector: 'home',
@@ -6,4 +7,5 @@ import {Component} from '@angular/core';
   templateUrl: './home.html'
 })
 export class Home {
+
 }
