@@ -3,10 +3,12 @@ import {Observable} from 'rxjs/Observable';
 
 export const AuthService = new OpaqueToken("auth.service");
 export const AuthProvider = new OpaqueToken("auth.provider");
+export const AuthorizationService = new OpaqueToken("authorization.service");
 
 export * from './mock-auth.service';
 export * from './auth-guard.service';
 export * from './auth0-provider.service';
+export * from './authorization.service';
 
 export interface IAuthService {
   isLoggedIn: Observable<boolean>;
@@ -15,6 +17,11 @@ export interface IAuthService {
   
   authenticateWithEmail(email: string, password: string): Observable<void>;
   logout(): Observable<void>;
+
+}
+
+export interface IAuthorizationService {
+  setBearerToken(token: string): void;
 }
 
 export interface IToken {

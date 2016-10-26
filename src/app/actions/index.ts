@@ -1,4 +1,5 @@
 export * from './auth.actions';
+export * from './authorization.actions';
 
 export interface IAction {
   type: string;

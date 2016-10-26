@@ -1,7 +1,7 @@
 import {Component, Input, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {AuthService, IAuthProvider, AuthProvider} from '../../../../services/auth';
+import {AuthService, IAuthProvider, AuthProvider, IAuthorizationService, AuthorizationService} from '../../../../services/auth';
 
 @Component({
   selector: 'auth-login',
@@ -10,15 +10,17 @@ import {AuthService, IAuthProvider, AuthProvider} from '../../../../services/aut
 export class AuthLoginExternal implements OnInit {
 
   constructor(
-    @Inject(AuthProvider)private _auth: IAuthProvider) {
-      this._auth.loginTokens.subscribe(result => {
-        if (result.isAuthenticated) {
+    @Inject(AuthProvider)private _authorizationProvider: IAuthProvider,
+    @Inject(AuthorizationService)private _authorizationService: IAuthorizationService) {
 
+      this._authorizationProvider.loginTokens.subscribe(result => {
+        if (result.isAuthenticated) {
+          this._authorizationService.setBearerToken(result.token.idToken);
         }
       });
     }
 
   ngOnInit() {
-    this._auth.beginLogin();
+    this._authorizationProvider.beginLogin();
   }
 }
