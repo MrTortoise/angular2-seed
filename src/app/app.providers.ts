@@ -1,6 +1,6 @@
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AuthActions} from './actions/auth.actions';
-import {AuthService, MockAuthService, AuthGuard, Auth0AuthService} from './services/auth';
+import {AuthService, MockAuthService, AuthGuard, Auth0AuthProvider} from './services/auth';
 
 export const Providers = [
   { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -9,5 +9,5 @@ export const Providers = [
   { provide: AuthService, useClass: MockAuthService },
   AuthActions,
   AuthGuard,
-  Auth0AuthService
+  Auth0AuthProvider
 ]

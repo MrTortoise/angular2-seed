@@ -2,10 +2,11 @@ import {OpaqueToken} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 export const AuthService = new OpaqueToken("auth.service");
+export const AuthProvider = new OpaqueToken("auth.provider");
 
 export * from './mock-auth.service';
 export * from './auth-guard.service';
-export * from './auth0-auth.service';
+export * from './auth0-provider.service';
 
 export interface IAuthService {
   isLoggedIn: Observable<boolean>;
@@ -16,7 +17,7 @@ export interface IAuthService {
   logout(): Observable<void>;
 }
 
-export interface ITokenResult {
+export interface IToken {
   accessToken: string,
   idToken: string,
   idTokenPayload: {
@@ -28,8 +29,18 @@ export interface ITokenResult {
   }
 }
 
+export interface ITokenResult {
+  isAuthenticated: boolean,
+  token?: IToken
+}
+
+export const TokenResultDefault: ITokenResult = {
+  isAuthenticated: false
+}
+
 export interface IAuthProvider {
-  loginTokens(): Observable<ITokenResult>;
+  loginTokens: Observable<ITokenResult>;
+  isAuthenticating: Observable<boolean>;
   beginLogin(): void;
   beginLogout(): void;
 }

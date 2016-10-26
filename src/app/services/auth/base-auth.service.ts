@@ -10,7 +10,7 @@ import {AuthActions} from '../../actions';
 import * as Random from '../../utils/random.utils';
 
 @Injectable()
-export abstract class BaseAuth implements IAuthService {
+export abstract class BaseAuthService implements IAuthService {
   @select(s => s.auth) state$: Observable<IAuthState>;
 
   constructor(
