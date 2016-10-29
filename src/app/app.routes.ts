@@ -5,15 +5,13 @@ export const rootRouterConfig: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: Home},
   {path: 'about', component: About},
-  {path: 'auth', component: AuthLoginExternal,
+  {path: 'auth', component: Auth,
     children: [
-      {path: '', component: AuthLogin},
-      {path: 'login', redirectTo: 'auth/login/external',
+      {path: 'login', component: AuthLogin,
         children: [
           {path: 'external', component: AuthLoginExternal}
         ]
-      },
-      {path: 'logout', component: AuthLogout}
+      }
     ]
   }
   /*

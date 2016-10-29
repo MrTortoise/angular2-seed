@@ -5,7 +5,7 @@ import {Subject} from 'rxjs/Subject';
 import {IAuthorizationService, AuthorizationService} from './authorization.service'
 import * as Random from '../../utils/random.utils';
 
-var Auth0Lock = require('auth0-lock');
+declare var Auth0Lock: any;
 
 export const AuthenticationProvider = new OpaqueToken("authentication.provider");
 
@@ -27,7 +27,8 @@ const Auth0LockConfigDefault: IAuth0LockConfig = {
     options: {
         auth: {
             redirect: false
-        }
+        },
+        autoclose: true
     }
 }
 
