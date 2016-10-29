@@ -1,6 +1,7 @@
-import {IAuthProvider, ITokenResult, TokenResultDefault} from './index';
+import {IExternalAuthenticationProvider, ITokenResult, TokenResultDefault} from './index';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Subject} from 'rxjs/Subject';
 import {Injectable} from '@angular/core';
 
 declare var Auth0Lock: any;
@@ -23,17 +24,17 @@ export const Auth0LockConfigDefault: IAuth0LockConfig = {
 }
 
 @Injectable()
-export class Auth0AuthProvider implements IAuthProvider {
+export class Auth0AuthProvider implements IExternalAuthenticationProvider {
     private _lock: any;
     private _lockDialogShown: BehaviorSubject<boolean>;
-    private _loginTokenSubject: BehaviorSubject<ITokenResult>;
+    private _loginTokenSubject: Subject<ITokenResult>;
 
     public loginTokens: Observable<ITokenResult>;
     public isAuthenticating: Observable<boolean>;
 
     constructor() {
         this._lockDialogShown = new BehaviorSubject(false);
-        this._loginTokenSubject = new BehaviorSubject(TokenResultDefault);
+        this._loginTokenSubject = new Subject<ITokenResult>();
         this._lock = new Auth0Lock(Auth0LockConfigDefault.clientId, Auth0LockConfigDefault.domain, Auth0LockConfigDefault.options);
         this.loginTokens = this._loginTokenSubject;
         this.isAuthenticating = this._lockDialogShown;
@@ -60,7 +61,7 @@ export class Auth0AuthProvider implements IAuthProvider {
         
     }
 
-    beginLogin(): void {
+    beginLogin(): void {       
         this._lock.show();
     }
 

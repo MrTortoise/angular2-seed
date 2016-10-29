@@ -9,8 +9,7 @@ export const rootRouterConfig: Routes = [
     children: [
       {path: '', component: AuthLogin},
       {path: 'login', component: AuthLogin},
-      {path: 'logout', component: AuthLogout},
-      {path: 'redirect', component: AuthRedirect}
+      {path: 'logout', component: AuthLogout}
     ]
   }
   /*

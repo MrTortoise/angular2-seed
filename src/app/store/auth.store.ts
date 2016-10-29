@@ -8,6 +8,7 @@ export interface IAuthState {
   email: string;
   uuid: string;
   token: string;
+  claims: { [name: string]: string }
 }
 
 export const AuthDefaultState: IAuthState = {
@@ -15,7 +16,8 @@ export const AuthDefaultState: IAuthState = {
   isAuthenticating: false,
   email: "",
   uuid: "",
-  token: ""
+  token: "",
+  claims: {}
 }
 
 export function authReducer(state: IAuthState = AuthDefaultState, action: IAction): IAuthState {
