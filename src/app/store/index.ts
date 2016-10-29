@@ -1,17 +1,22 @@
 import {combineReducers} from 'redux';
 import {IAction} from '../actions';
-import {IAuthState, AuthDefaultState, authReducer} from './auth.store';
+import * as auth from './authorization.store';
+import * as config from './config.store';
 
-export * from './auth.store';
+export {IAuthorizationState} from './authorization.store';
+export {IConfigState} from './config.store';
 
 export interface IAppState {
-  auth: IAuthState;
+  authorization: auth.IAuthorizationState;
+  config: config.IConfigState
 }
 
 export const DefaultAppState: IAppState = {
-  auth: AuthDefaultState
+  authorization: auth.AuthorizationDefaultState,
+  config: config.ConfigDefaultState
 }
 
 export const rootReducer = combineReducers<IAppState>({
-  auth: authReducer
+  authorization: auth.authorizationReducer,
+  config: config.configReducer
 });
