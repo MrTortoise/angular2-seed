@@ -8,6 +8,7 @@ import {
 import {
   AuthenticationProvider, Auth0AuthenticationProvider,
   AuthorizationService, AuthorizationServiceImpl,
+  ConfigService, ConfigServiceImpl
 } from './services';
 
 import {
@@ -21,5 +22,7 @@ export const Providers: Provider[] = [
   { provide: AuthenticationProvider, useClass: Auth0AuthenticationProvider },
   { provide: AuthorizationService, useClass: AuthorizationServiceImpl },
   AuthorizationActions,
-  AuthGuard
+  AuthGuard,
+
+  { provide: ConfigService, useClass: ConfigServiceImpl }
 ]

@@ -1,5 +1,5 @@
 import {Component, Input, Inject} from '@angular/core';
-import {AuthService, IAuthService} from '../../../services/auth';
+import {AuthorizationService, IAuthorizationService} from '../../../services/auth';
 
 @Component({
   selector: 'nav-bar',
@@ -7,10 +7,10 @@ import {AuthService, IAuthService} from '../../../services/auth';
 })
 export class NavBar {
   constructor(
-    @Inject(AuthService) private _authService: IAuthService) {
+    @Inject(AuthorizationService) private _authService: IAuthorizationService) {
 
   }
 
-  isLoggedIn = this._authService.isLoggedIn;
+  isLoggedIn = this._authService.isAuthorized()
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {AuthService, IAuthService} from '../../../services/auth'
+import {AuthorizationService, IAuthorizationService} from '../../../services/auth'
 
 @Component({
   selector: 'auth-logout',
@@ -9,20 +9,11 @@ import {AuthService, IAuthService} from '../../../services/auth'
 export class AuthLogout implements OnInit {
   
     constructor(
-    @Inject(AuthService) private authService: IAuthService,
+    @Inject(AuthorizationService) private _authService: IAuthorizationService,
     private router: Router) {}
 
   ngOnInit() {
-    this.authService.isLoggedIn.subscribe(loggedIn => {
-      if (loggedIn) {
-        this.authService.logout().subscribe(() => {
-          this.router.navigate(["auth/login"]);
-        });
-      }
-      else {
-        this.router.navigate(["auth/login"]);
-      }
-    })
+    this._authService.clearToken();
   }
 
 }
