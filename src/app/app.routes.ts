@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {Home, About, Auth, AuthLogin, AuthLogout, AuthRedirect} from './components';
+import {Home, About, Auth, AuthLogin, AuthLogout, AuthLoginExternal} from './components';
 
 export const rootRouterConfig: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -8,7 +8,11 @@ export const rootRouterConfig: Routes = [
   {path: 'auth', component: Auth,
     children: [
       {path: '', component: AuthLogin},
-      {path: 'login', component: AuthLogin},
+      {path: 'login', redirectTo: 'auth/login/external',
+        children: [
+          {path: 'external', component: AuthLoginExternal}
+        ]
+      },
       {path: 'logout', component: AuthLogout}
     ]
   }

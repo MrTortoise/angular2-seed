@@ -9,6 +9,7 @@ export interface IAuthorizationService {
   setToken(token: string): void;
   clearToken(): void;
   getToken(): Observable<string>;
+  isAuthorized(): Observable<boolean>;
 }
 
 export const AuthorizationService = new OpaqueToken("authorization.service");
@@ -41,6 +42,10 @@ export class AuthorizationServiceImpl implements IAuthorizationService {
     this._config.first().subscribe(config => {
       localStorage.removeItem(config.auth.tokenName);
     });
+  }
+
+  isAuthorized(): Observable<boolean> {
+    return this.state$.map(s => s.isAuthorized);
   }
 
 }

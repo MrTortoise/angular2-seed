@@ -1,5 +1,4 @@
 import {Component, Output, Input, EventEmitter} from '@angular/core';
-import {IAuthService} from '../../../../services/auth';
 
 @Component({
   selector: 'auth-login-form',

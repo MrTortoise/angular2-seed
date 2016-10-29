@@ -1,32 +1,20 @@
-import {Component, Output, Inject, EventEmitter, OnInit, OnDestroy} from '@angular/core';
+import {Component, Output, Inject, EventEmitter, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {IExternalAuthenticationProvider, ITokenResult, ExternalAuthenticationProvider} from '../../../../services/auth';
+import {
+  AuthenticationProvider, IAuthenticationProvider} from '../../../../services/auth';
 
 @Component({
-  selector: 'auth-external',
-  templateUrl: './auth-external.html'
+  selector: 'auth-login-external',
+  templateUrl: './auth-login-external.html'
 })
-export class AuthExternal implements OnInit, OnDestroy {
-  @Output() onComplete = new EventEmitter<ITokenResult>();
-  @Output() onError = new EventEmitter<Error>();
-
-  private _resultObservable: Subscription;
-
+export class AuthLoginExternal implements OnInit {
   constructor(
-    @Inject(ExternalAuthenticationProvider)private _authProvider: IExternalAuthenticationProvider) {
+    @Inject(AuthenticationProvider)private _authProvider: IAuthenticationProvider) {
       
-    this._resultObservable = this._authProvider
-      .loginTokens
-      .subscribe(
-        result => { this.onComplete.emit(result); }, 
-        error => { this.onError.emit(error); } );
   }
 
   ngOnInit() {
     this._authProvider.beginLogin();
   }
 
-  ngOnDestroy() {
-    this._resultObservable.unsubscribe();
-  }
 }

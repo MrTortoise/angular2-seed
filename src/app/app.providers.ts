@@ -1,3 +1,4 @@
+import {Provider} from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {
@@ -13,12 +14,12 @@ import {
   AuthGuard
 } from './utils';
 
-export const Providers = [
+export const Providers: Provider[] = [
   { provide: LocationStrategy, useClass: HashLocationStrategy },
 
   // Auth
   { provide: AuthenticationProvider, useClass: Auth0AuthenticationProvider },
-  { provide: AuthorizationService, AuthorizationServiceImpl},
+  { provide: AuthorizationService, useClass: AuthorizationServiceImpl },
   AuthorizationActions,
   AuthGuard
 ]
