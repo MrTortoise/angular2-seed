@@ -12,6 +12,7 @@ import 'auth0-lock';
 // RxJS 5
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 
 // For vendors for example jQuery, Lodash, angular2-jwt import them here

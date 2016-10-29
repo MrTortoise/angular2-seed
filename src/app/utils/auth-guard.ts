@@ -1,15 +1,15 @@
 import {Inject, Injectable} from '@angular/core';
 import {CanActivate} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {AuthService, IAuthService} from '../services'; 
+import {AuthorizationService, IAuthorizationService} from '../services'; 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
-    @Inject(AuthService) private _authService: IAuthService){}
+    @Inject(AuthorizationService) private _authService: IAuthorizationService){}
 
   canActivate() {
-    return this._authService.isLoggedIn;
+    return this._authService.getToken().map(v => v !== undefined || v !== '');
   }
 
 }

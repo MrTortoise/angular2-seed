@@ -11,7 +11,7 @@ export interface IAuthorizationService {
   getToken(): Observable<string>;
 }
 
-export const AuthorizationService = new OpaqueToken('authorization.service');
+export const AuthorizationService = new OpaqueToken("authorization.service");
 
 @Injectable()
 export class AuthorizationServiceImpl implements IAuthorizationService {

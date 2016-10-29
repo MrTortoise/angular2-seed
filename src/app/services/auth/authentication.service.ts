@@ -1,12 +1,13 @@
-import {Injectable, Inject} from '@angular/core';
+import {Injectable, Inject, OpaqueToken} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subject} from 'rxjs/Subject';
 import {IAuthorizationService, AuthorizationService} from './authorization.service'
 import * as Random from '../../utils/random.utils';
 
-declare var Auth0Lock: any;
-declare var Auth0: any;
+var Auth0Lock = require('auth0-lock');
+
+export const AuthenticationProvider = new OpaqueToken("authentication.provider");
 
 export interface IAuthenticationProvider {
   isAuthenticating: Observable<boolean>;
